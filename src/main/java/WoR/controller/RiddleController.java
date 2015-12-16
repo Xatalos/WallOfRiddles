@@ -53,7 +53,7 @@ public class RiddleController {
             @RequestParam String ownAnswer) {
         Riddle riddle = riddleRepository.findOne(riddleId);
         String correctAnswer = riddle.getAnswer();
-        if (ownAnswer.equals(correctAnswer)) {
+        if (ownAnswer.toLowerCase().equals(correctAnswer.toLowerCase())) {
             riddle.setCorrectGuesses(riddle.getCorrectGuesses() + 1);
         } else {
             riddle.setWrongGuesses(riddle.getWrongGuesses() + 1);
