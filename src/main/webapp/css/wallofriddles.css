@@ -1,0 +1,13 @@
+.centered {
+    margin: auto;
+    margin-top: 5%;
+    width: 450px;
+}
+
+.bordered {
+    border-style: outset;
+}
+
+.hidden {
+    display: none;
+}
