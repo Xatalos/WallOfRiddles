@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="centered">
-            <p th:text="${warning}"></p>
+            <h4 th:text="${notification}"></h4>
             <div id="createRiddle" class="hidden">
                 <button onclick="showRiddles();">Go Back</button>
                 <h2>Create a New Riddle</h2>
@@ -28,7 +28,7 @@
                 <div class="bordered" th:each="riddle: ${riddles}">
                     <p><b>Riddle:</b> <span th:text="${riddle.description}" /></p>
                     <p><b>Created by:</b> <span th:text="${riddle.creator}" /></p>
-                    <p><span th:utext="${riddle.correctGuesses}" /> correct answers and <span th:utext="${riddle.wrongGuesses}" /> incorrect answers so far...</p>
+                    <p><span th:utext="${riddle.correctGuesses}" /> correct answers and <span th:utext="${riddle.wrongGuesses}" /> wrong answers so far...</p>
                     <form id="answerform" th:method="POST" th:action="@{/answer/{riddleId}(riddleId=${riddle.id})}">
                         <p><input type="text" placeholder="Your Answer?" name="ownAnswer" /><input type="submit" value="Answer!"/></p>
                     </form>

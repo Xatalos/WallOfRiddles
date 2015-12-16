@@ -40,7 +40,7 @@ public class RiddleController {
             BindingResult result,
             RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("warning", "One or more fields were left empty!");
+            redirectAttributes.addFlashAttribute("notification", "One or more fields were left empty!");
             return "redirect:/index";
         }
         riddleRepository.save(riddle);
@@ -50,13 +50,16 @@ public class RiddleController {
     @Transactional
     @RequestMapping(value = "/answer/{riddleId}", method = RequestMethod.POST)
     public String answerRiddle(@PathVariable Long riddleId,
-            @RequestParam String ownAnswer) {
+            @RequestParam String ownAnswer,
+            RedirectAttributes redirectAttributes) {
         Riddle riddle = riddleRepository.findOne(riddleId);
         String correctAnswer = riddle.getAnswer();
         if (ownAnswer.toLowerCase().equals(correctAnswer.toLowerCase())) {
             riddle.setCorrectGuesses(riddle.getCorrectGuesses() + 1);
+            redirectAttributes.addFlashAttribute("notification", "Your answer was correct!");
         } else {
             riddle.setWrongGuesses(riddle.getWrongGuesses() + 1);
+            redirectAttributes.addFlashAttribute("notification", "Your answer was wrong!");
         }
         return "redirect:/index";
     }
