@@ -56,7 +56,7 @@ public class RiddleController {
         String correctAnswer = riddle.getAnswer();
         if (ownAnswer.toLowerCase().equals(correctAnswer.toLowerCase())) {
             riddle.setCorrectGuesses(riddle.getCorrectGuesses() + 1);
-            redirectAttributes.addFlashAttribute("notification", "Your answer was correct!");
+            redirectAttributes.addFlashAttribute("correctNotification", "Your answer was correct!");
         } else if (ownAnswer.isEmpty()) {
             redirectAttributes.addFlashAttribute("notification", "You didn't give an answer!");
         } else {
